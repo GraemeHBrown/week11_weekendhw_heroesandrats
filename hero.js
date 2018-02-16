@@ -1,0 +1,3 @@
+// hero
+
+module.exports = hero
