@@ -21,7 +21,7 @@ Hero.prototype.sortTasks = function (fieldToSortBy, order) {
     const sortedArray = this.tasks.sort(function (a, b) {
         if (order === 'asc') {
             return a[fieldToSortBy] - b[fieldToSortBy]
-        } else if (order==='desc') {
+        } else if (order === 'desc') {
             return b[fieldToSortBy] - a[fieldToSortBy]
         }
 
@@ -38,6 +38,11 @@ Hero.prototype.eat = function (food) {
         this.health += food.replenishmentValue;
     }
 
+}
+
+Hero.prototype.getTasksWithCompletedStatus = function(isComplete){
+    const tasksByStatus = this.tasks.filter(item => item.completed===isComplete);
+    return tasksByStatus;
 }
 
 module.exports = Hero

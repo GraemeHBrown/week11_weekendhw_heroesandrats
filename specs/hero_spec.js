@@ -103,4 +103,23 @@ describe('Hero', function () {
         assert.strictEqual(healthValueAfterEating, healthValueBeforeEating + (favouriteFood.replenishmentValue * 1.5));
     });
 
+    it('should be able to view tasks marked as complete', function () {
+        taskOne.markAsCompleted();
+        hero.addTask(taskOne);
+        hero.addTask(taskTwo);
+        hero.addTask(taskThree);
+        const completeTasks = hero.getTasksWithCompletedStatus(true);
+        assert.strictEqual(completeTasks[0].completed, true);
+        assert.strictEqual(completeTasks.length, 1);
+    });
+
+    it('should be able to view tasks marked as incomplete', function () {
+        taskOne.markAsCompleted();
+        hero.addTask(taskOne);
+        hero.addTask(taskTwo);
+        hero.addTask(taskThree);
+        const inCompleteTasks = hero.getTasksWithCompletedStatus(false);
+        assert.strictEqual(inCompleteTasks[0].completed, false);
+        assert.strictEqual(inCompleteTasks.length, 2);
+    });
 });
