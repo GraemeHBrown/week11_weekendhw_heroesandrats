@@ -4,7 +4,7 @@ const Task = require('../task.js')
 describe('Task', function() {
     let task;
     beforeEach(function () {
-        task = new Task('Sword fighting',10, 10, 'pass one of the three trials of becoming a pirate');
+        task = new Task('Sword fighting',5, 10, 25);
     });
 
     it('should have a description', function () {
@@ -14,7 +14,7 @@ describe('Task', function() {
 
     it('should have a difficulty level', function () {
         const actual = task.difficultyLevel;
-        assert.strictEqual(actual, 10);
+        assert.strictEqual(actual, 5);
     });
 
     it('should have an urgency level', function () {
@@ -24,7 +24,7 @@ describe('Task', function() {
 
     it('should have a reward', function () {
         const actual = task.reward;
-        assert.strictEqual(actual, 'pass one of the three trials of becoming a pirate');
+        assert.strictEqual(actual, 25);
     });
 
     it('task should be able to be marked as completed', function () {
