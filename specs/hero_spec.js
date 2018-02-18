@@ -1,10 +1,16 @@
 const assert = require('assert')
 const Hero = require('../hero.js')
+const Food = require('../food.js')
 
 describe('Hero', function() {
     let hero;
+    let food;
+    let favouriteFood;
+
     beforeEach(function() {
-        hero = new Hero('Guybrush Threepwood', 'Carrot cake')
+        hero = new Hero('Guybrush Threepwood', 'Carrot cake');
+        food = new Food('jawbreakers',5);
+        favouriteFood = new Food('Carrot cake',10);
     });
 
     it('should have a name' , function () {
@@ -30,5 +36,22 @@ describe('Hero', function() {
     it('has a collection of tasks to complete', function() {
         const actual = hero.tasks;
         assert.deepStrictEqual(actual, []);
-    })
+    });
+
+    it('should be able to eat', function() {
+        const healthValueBeforeEating = hero.health;
+        assert.strictEqual(healthValueBeforeEating, 0);
+        hero.eat(food);
+        const healthValueAfterEating= hero.health;
+        assert.strictEqual(healthValueAfterEating, healthValueBeforeEating + food.replenishmentValue);
+    });
+
+    it('eating favourite food gives increased replenishment', function() {
+        const healthValueBeforeEating = hero.health;
+        assert.strictEqual(healthValueBeforeEating, 0);
+        hero.eat(favouriteFood);
+        const healthValueAfterEating = hero.health;
+        assert.strictEqual(healthValueAfterEating, healthValueBeforeEating + (favouriteFood.replenishmentValue*1.5));
+    });
+
 });
